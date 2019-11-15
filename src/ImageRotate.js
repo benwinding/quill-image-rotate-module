@@ -160,20 +160,22 @@ export default class ImageRotate {
 		);
 		Object.assign(this.img.style, imgStyle);
 
-		const rotation = +img.getAttribute("_rotation") || 0;
-		const imgRect2 = img.getBoundingClientRect();
-		const overlayStyle = this.getOverlayStyle(
-			rotation,
-			img.width,
-			img.height,
-			imgRect2.left,
-			imgRect2.top,
-			containerRect.left,
-			containerRect.top,
-			parent.scrollLeft,
-			parent.scrollTop
-		);
-		Object.assign(this.overlay.style, overlayStyle);
+		setTimeout(() => {
+			const rotation = +img.getAttribute("_rotation") || 0;
+			const imgRect2 = img.getBoundingClientRect();
+			const overlayStyle = this.getOverlayStyle(
+				rotation,
+				img.width,
+				img.height,
+				imgRect2.left,
+				imgRect2.top,
+				containerRect.left,
+				containerRect.top,
+				parent.scrollLeft,
+				parent.scrollTop
+			);
+			Object.assign(this.overlay.style, overlayStyle);
+		}, 30)
 	};
 
 	getImageStyle = (imgH, imgW, imgRectH, imgRectW) => {
