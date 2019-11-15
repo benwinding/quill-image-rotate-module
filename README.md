@@ -11,7 +11,7 @@ A module for Quill rich text editor to allow images to be rotated.
 
 ## Demo
 
-[Plunker](https://plnkr.co/edit/gq708AOrSBOWSlHcFslG?p=preview)
+[Plunker](https://embed.plnkr.co/HXLPDT9EWQRbjrscADY1/)
 
 ## Usage
 
