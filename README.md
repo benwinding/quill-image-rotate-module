@@ -15,7 +15,7 @@ A module for Quill rich text editor to allow images to be rotated.
 
 [Standalone Demo](https://benwinding.github.io/quill-image-rotate-module/demo/index.html)
 
-[Plunker (with quill-image-resize-module)](https://embed.plnkr.co/HXLPDT9EWQRbjrscADY1/)
+[Plunker Demo (with quill-image-resize-module)](https://embed.plnkr.co/HXLPDT9EWQRbjrscADY1/)
 
 ## Usage
 
