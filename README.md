@@ -2,8 +2,12 @@
 
 A module for Quill rich text editor to allow images to be rotated.
 
-Also see [quill-image-drop-module](https://github.com/kensnyder/quill-image-drop-module),
-a module that enables copy-paste and drag/drop for Quill.
+<!-- [START badges] -->
+[![NPM Version](https://img.shields.io/npm/v/quill-image-rotate-module.svg)](https://www.npmjs.com/package/quill-image-rotate-module) 
+[![License](https://img.shields.io/npm/l/quill-image-rotate-module.svg)](https://github.com/benwinding/quill-image-rotate-module/blob/master/LICENSE) 
+[![Downloads/week](https://img.shields.io/npm/dm/quill-image-rotate-module.svg)](https://www.npmjs.com/package/quill-image-rotate-module) 
+[![Github Issues](https://img.shields.io/github/issues/benwinding/quill-image-rotate-module.svg)](https://github.com/benwinding/quill-image-rotate-module)
+<!-- [END badges] -->
 
 ## Demo
 
@@ -14,19 +18,19 @@ a module that enables copy-paste and drag/drop for Quill.
 ### Webpack/ES6
 
 ```javascript
-import Quill from 'quill';
-import { ImageRotate } from 'quill-image-rotate-module';
+import Quill from "quill";
+import { ImageRotate } from "quill-image-rotate-module";
 
-Quill.register('modules/ImageRotate', ImageRotate);
+Quill.register("modules/ImageRotate", ImageRotate);
 
 const quill = new Quill(editor, {
-    // ...
-    modules: {
-        // ...
-        ImageRotate: {
-            // See optional "config" below
-        }
-    }
+	// ...
+	modules: {
+		// ...
+		ImageRotate: {
+			// See optional "config" below
+		}
+	}
 });
 ```
 
@@ -40,26 +44,27 @@ Copy image-rotate.min.js into your web root or include from node_modules
 
 ```javascript
 var quill = new Quill(editor, {
-    // ...
-    modules: {
-        // ...
-        ImageRotate: {
-            // See optional "config" below
-        }
-    }
+	// ...
+	modules: {
+		// ...
+		ImageRotate: {
+			// See optional "config" below
+		}
+	}
 });
 ```
 
 ### Config
 
 For the default experience, pass an empty object, like so:
+
 ```javascript
 var quill = new Quill(editor, {
-    // ...
-    modules: {
-        // ...
-        ImageRotate: {}
-    }
+	// ...
+	modules: {
+		// ...
+		ImageRotate: {}
+	}
 });
 ```
 
@@ -68,13 +73,13 @@ the default is to include all modules:
 
 ```javascript
 const quill = new Quill(editor, {
-    // ...
-    modules: {
-        // ...
-        ImageRotate: {
-            modules: [ 'Toolbar' ]
-        }
-    }
+	// ...
+	modules: {
+		// ...
+		ImageRotate: {
+			modules: ["Toolbar"]
+		}
+	}
 });
 ```
 
@@ -88,19 +93,19 @@ The look and feel can be controlled with options:
 
 ```javascript
 var quill = new Quill(editor, {
-    // ...
-    modules: {
-        // ...
-        ImageRotate: {
-            // ...
-            handleStyles: {
-                backgroundColor: 'black',
-                border: 'none',
-                color: white
-                // other camelCase styles for size display
-            }
-        }
-    }
+	// ...
+	modules: {
+		// ...
+		ImageRotate: {
+			// ...
+			handleStyles: {
+				backgroundColor: "black",
+				border: "none",
+				color: white
+				// other camelCase styles for size display
+			}
+		}
+	}
 });
 ```
 
@@ -112,25 +117,25 @@ The look and feel can be controlled with options:
 
 ```javascript
 var quill = new Quill(editor, {
-    // ...
-    modules: {
-        // ...
-        ImageRotate: {
-            // ...
-            toolbarStyles: {
-                backgroundColor: 'black',
-                border: 'none',
-                color: white
-                // other camelCase styles for size display
-            },
-            toolbarButtonStyles: {
-                // ...
-            },
-            toolbarButtonSvgStyles: {
-                // ...
-            },
-        }
-    }
+	// ...
+	modules: {
+		// ...
+		ImageRotate: {
+			// ...
+			toolbarStyles: {
+				backgroundColor: "black",
+				border: "none",
+				color: white
+				// other camelCase styles for size display
+			},
+			toolbarButtonStyles: {
+				// ...
+			},
+			toolbarButtonSvgStyles: {
+				// ...
+			}
+		}
+	}
 });
 ```
 
@@ -142,20 +147,20 @@ the module setup.
 For example,
 
 ```javascript
-import { Rotate, BaseModule } from 'quill-image-rotate-module';
+import { Rotate, BaseModule } from "quill-image-rotate-module";
 
 class MyModule extends BaseModule {
-    // See src/modules/BaseModule.js for documentation on the various lifecycle callbacks
+	// See src/modules/BaseModule.js for documentation on the various lifecycle callbacks
 }
 
 var quill = new Quill(editor, {
-    // ...
-    modules: {
-        // ...
-        ImageRotate: {
-            modules: [ MyModule, Rotate ],
-            // ...
-        }
-    }
+	// ...
+	modules: {
+		// ...
+		ImageRotate: {
+			modules: [MyModule, Rotate]
+			// ...
+		}
+	}
 });
 ```
