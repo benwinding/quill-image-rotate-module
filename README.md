@@ -72,7 +72,7 @@ const quill = new Quill(editor, {
     modules: {
         // ...
         ImageRotate: {
-            modules: [ 'Rotate', 'DisplaySize', 'Toolbar' ]
+            modules: [ 'Toolbar' ]
         }
     }
 });
@@ -94,30 +94,6 @@ var quill = new Quill(editor, {
         ImageRotate: {
             // ...
             handleStyles: {
-                backgroundColor: 'black',
-                border: 'none',
-                color: white
-                // other camelCase styles for size display
-            }
-        }
-    }
-});
-```
-
-#### `DisplaySize` - Display pixel size
-
-Shows the size of the image in pixels near the bottom right of the image.
-
-The look and feel can be controlled with options:
-
-```javascript
-var quill = new Quill(editor, {
-    // ...
-    modules: {
-        // ...
-        ImageRotate: {
-            // ...
-            displayStyles: {
                 backgroundColor: 'black',
                 border: 'none',
                 color: white

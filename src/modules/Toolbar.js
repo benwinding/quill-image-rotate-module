@@ -1,12 +1,12 @@
-import IconUndo from 'quill/assets/icons/undo.svg'
-import IconRedo from 'quill/assets/icons/redo.svg'
+import IconUndo from "quill/assets/icons/undo.svg";
+import IconRedo from "quill/assets/icons/redo.svg";
 import { BaseModule } from "./BaseModule";
 
 const Parchment = window.Quill.imports.parchment;
 const FloatStyle = new Parchment.Attributor.Style("float", "float");
 const MarginStyle = new Parchment.Attributor.Style("margin", "margin");
 const DisplayStyle = new Parchment.Attributor.Style("display", "display");
-const TransformStyle = new Parchment.Attributor.Style('transform', 'transform');
+const TransformStyle = new Parchment.Attributor.Style("transform", "transform");
 
 export class Toolbar extends BaseModule {
 	rotation = 0;
@@ -16,10 +16,11 @@ export class Toolbar extends BaseModule {
 		this.toolbar = document.createElement("div");
 		Object.assign(this.toolbar.style, this.options.toolbarStyles);
 		this.overlay.appendChild(this.toolbar);
-
 		// Setup Buttons
 		this._defineAlignments();
 		this._addToolbarButtons();
+		this.rotation = +this.img.getAttribute("_rotation") || 0;
+		console.log("onCreate", { rotation: this.rotation });
 	};
 
 	// The toolbar and its children will be destroyed when the overlay is removed
@@ -32,12 +33,13 @@ export class Toolbar extends BaseModule {
 		this.rotationvalue = "";
 		this.alignments = [
 			{
-                name: 'rotate-left',
+				name: "rotate-left",
 				icon: IconUndo,
 				apply: () => {
-					this.rotationvalue = this._setRotation("left");
-					console.log('Rotate!');
-					TransformStyle.add(this.img, this.rotationvalue);
+					const rotationvalue = this._setRotation("left");
+					console.log("Rotate left!", { rotationvalue });
+					this.img.setAttribute("_rotation", this.rotation);
+					TransformStyle.add(this.img, rotationvalue);
 				},
 				isApplied: () => {}
 			},
@@ -45,9 +47,10 @@ export class Toolbar extends BaseModule {
 				name: "rotate-right",
 				icon: IconRedo,
 				apply: () => {
-					console.log('Rotate!');
-					this.rotationvalue = this._setRotation("right");
-					TransformStyle.add(this.img, this.rotationvalue);
+					const rotationvalue = this._setRotation("right");
+					console.log("Rotate right!", { rotationvalue });
+					this.img.setAttribute("_rotation", this.rotation);
+					TransformStyle.add(this.img, rotationvalue);
 				},
 				isApplied: () => {}
 			}
@@ -94,27 +97,12 @@ export class Toolbar extends BaseModule {
 
 	_selectButton = button => {
 		button.style.filter = "invert(20%)";
-    };
-    
-    _setRotation(direction) {
-		if (this.rotation == 0 && direction == 'left') {
-			this.rotation = -90;
-		} else if (this.rotation == -90 && direction == 'left') {
-			this.rotation = 180;
-		} else if (this.rotation == 180 && direction == 'left') {
-			this.rotation = 90;
-		} else if (this.rotation == 90 && direction == 'left') {
-			this.rotation = 0;
-		} else if (this.rotation == 0 && direction == 'right') {
-			this.rotation = 90;
-		} else if (this.rotation == 90 && direction == 'right') {
-			this.rotation = 180;
-		} else if (this.rotation == 180 && direction == 'right') {
-			this.rotation = -90;
-		} else if (this.rotation == -90 && direction == 'right') {
-			this.rotation = 0;
-		}
+	};
 
-		return 'rotate(' + this.rotation + 'deg)';
+	_setRotation(direction) {
+		const oldRotation = this.rotation;
+		const increment = (direction == 'left') ? -90 : 90;
+		this.rotation = (oldRotation + 360 + increment) % 360;
+		return "rotate(" + this.rotation + "deg)";
 	}
 }

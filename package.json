@@ -1,6 +1,6 @@
 {
   "name": "quill-image-rotate-module",
-  "version": "3.0.0",
+  "version": "0.0.1",
   "description": "A module for Quill rich text editor to allow images to be rotated.",
   "main": "image-rotate.min.js",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kensnyder/quill-image-rotate-module.git"
+    "url": "git+https://github.com/benwinding/quill-image-rotate-module.git"
   },
   "keywords": [
     "quill",
@@ -21,18 +21,12 @@
     "rotate",
     "sizer"
   ],
-  "author": "@kensnyder",
-  "contributors": [
-    {
-      "name": "Wikia",
-      "url": "https://github.com/Wikia"
-    }
-  ],
+  "author": "@benwinding",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kensnyder/quill-image-rotate-module/issues"
+    "url": "https://github.com/benwinding/quill-image-rotate-module/issues"
   },
-  "homepage": "https://github.com/kensnyder/quill-image-rotate-module#readme",
+  "homepage": "https://github.com/benwinding/quill-image-rotate-module#readme",
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-eslint": "^7.2.1",

@@ -1,10 +1,8 @@
 import defaultsDeep from "lodash/defaultsDeep";
 import DefaultOptions from "./DefaultOptions";
-import { DisplaySize } from "./modules/DisplaySize";
 import { Toolbar } from "./modules/Toolbar";
-import { Rotate } from "./modules/Rotate";
 
-const knownModules = { DisplaySize, Toolbar, Rotate };
+const knownModules = { Toolbar };
 
 /**
  * Custom module for quilljs to allow user to rotate <img> elements
@@ -12,7 +10,6 @@ const knownModules = { DisplaySize, Toolbar, Rotate };
  * @see https://quilljs.com/blog/building-a-custom-module/
  */
 export default class ImageRotate {
-
 	constructor(quill, options = {}) {
 		// save the quill reference and options
 		this.quill = quill;
@@ -151,18 +148,85 @@ export default class ImageRotate {
 
 		// position the overlay over the image
 		const parent = this.quill.root.parentNode;
-		const imgRect = this.img.getBoundingClientRect();
+		const img = this.img;
+		const imgRect = img.getBoundingClientRect();
 		const containerRect = parent.getBoundingClientRect();
 
-		Object.assign(this.overlay.style, {
-			left: `${imgRect.left -
-				containerRect.left -
-				1 +
-				parent.scrollLeft}px`,
-			top: `${imgRect.top - containerRect.top + parent.scrollTop}px`,
-			width: `${imgRect.width}px`,
-			height: `${imgRect.height}px`
+		const imgStyle = this.getImageStyle(
+			img.height,
+			img.width,
+			imgRect.height,
+			imgRect.width
+		);
+		Object.assign(this.img.style, imgStyle);
+
+		const rotation = +img.getAttribute("_rotation") || 0;
+		const imgRect2 = img.getBoundingClientRect();
+		const overlayStyle = this.getOverlayStyle(
+			rotation,
+			img.width,
+			img.height,
+			imgRect2.left,
+			imgRect2.top,
+			containerRect.left,
+			containerRect.top,
+			parent.scrollLeft,
+			parent.scrollTop
+		);
+		Object.assign(this.overlay.style, overlayStyle);
+	};
+
+	getImageStyle = (imgH, imgW, imgRectH, imgRectW) => {
+		const offsetX = (imgRectW - imgW) / 2;
+		const offsetY = (imgRectH - imgH) / 2;
+		const styles = {
+			margin: `${offsetY}px ${offsetX}px`
+		};
+		// console.log("getImageStyle", {imgH, imgW, imgRectH, imgRectW, styles});
+		return styles;
+	};
+
+	getOverlayStyle = (
+		rotation,
+		imgW,
+		imgH,
+		imgRectL,
+		imgRectT,
+		cRectL,
+		cRectT,
+		pScrollL,
+		pScrollT
+	) => {
+		const styles = {};
+		switch (rotation) {
+			case 90:
+			case 270:
+				styles.width = `${imgH}px`;
+				styles.height = `${imgW}px`;
+				styles.left = `${imgRectL - cRectL - 1 + pScrollL}px`;
+				styles.top = `${imgRectT - cRectT + pScrollT}px`;
+				break;
+			case 180:
+			case 0:
+			default:
+				styles.width = `${imgW}px`;
+				styles.height = `${imgH}px`;
+				styles.left = `${imgRectL - cRectL - 1 + pScrollL}px`;
+				styles.top = `${imgRectT - cRectT + pScrollT}px`;
+		}
+		console.log("getOverlayStyle", {
+			rotation,
+			imgW,
+			imgH,
+			imgRectL,
+			imgRectT,
+			cRectL,
+			cRectT,
+			pScrollL,
+			pScrollT,
+			styles
 		});
+		return styles;
 	};
 
 	hide = () => {
