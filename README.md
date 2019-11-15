@@ -9,9 +9,13 @@ A module for Quill rich text editor to allow images to be rotated.
 [![Github Issues](https://img.shields.io/github/issues/benwinding/quill-image-rotate-module.svg)](https://github.com/benwinding/quill-image-rotate-module)
 <!-- [END badges] -->
 
+![preview image](https://user-images.githubusercontent.com/11782590/68917960-520c3800-07bc-11ea-9832-78a0f83c5efa.png)
+
 ## Demo
 
-[Plunker](https://embed.plnkr.co/HXLPDT9EWQRbjrscADY1/)
+[Standalone Demo](https://benwinding.github.io/quill-image-rotate-module/demo/index.html)
+
+[Plunker (with quill-image-resize-module)](https://embed.plnkr.co/HXLPDT9EWQRbjrscADY1/)
 
 ## Usage
 
