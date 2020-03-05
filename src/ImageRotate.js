@@ -122,6 +122,18 @@ export default class ImageRotate {
 		this.quill.root.parentNode.appendChild(this.overlay);
 
 		this.repositionElements();
+		if (!this.overlay || !this.img) {
+			return;
+		}
+		const clickCount = this.img.getAttribute('clickCount');
+		if (clickCount < 1) {
+			this.img.setAttribute('clickCount', 1);
+			this.quill.root.click()
+			setTimeout(() => {
+				this.img.click();
+			}, 1000);
+		}
+		this.img.setAttribute('clickCount', 0);
 	};
 
 	hideOverlay = () => {
@@ -159,23 +171,20 @@ export default class ImageRotate {
 			imgRect.width
 		);
 		Object.assign(this.img.style, imgStyle);
-
-		setTimeout(() => {
-			const rotation = +img.getAttribute("_rotation") || 0;
-			const imgRect2 = img.getBoundingClientRect();
-			const overlayStyle = this.getOverlayStyle(
-				rotation,
-				img.width,
-				img.height,
-				imgRect2.left,
-				imgRect2.top,
-				containerRect.left,
-				containerRect.top,
-				parent.scrollLeft,
-				parent.scrollTop
-			);
-			Object.assign(this.overlay.style, overlayStyle);
-		}, 30)
+		const rotation = +img.getAttribute("_rotation") || 0;
+		const imgRect2 = img.getBoundingClientRect();
+		const overlayStyle = this.getOverlayStyle(
+			rotation,
+			img.width,
+			img.height,
+			imgRect2.left,
+			imgRect2.top,
+			containerRect.left,
+			containerRect.top,
+			parent.scrollLeft,
+			parent.scrollTop
+		);
+		Object.assign(this.overlay.style, overlayStyle);
 	};
 
 	getImageStyle = (imgH, imgW, imgRectH, imgRectW) => {
