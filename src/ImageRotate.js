@@ -122,18 +122,19 @@ export default class ImageRotate {
 		this.quill.root.parentNode.appendChild(this.overlay);
 
 		this.repositionElements();
-		if (!this.overlay || !this.img) {
+		const img = this.img;
+		if (!this.overlay || !img) {
 			return;
 		}
-		const clickCount = this.img.getAttribute('clickCount');
+		const clickCount = img.getAttribute('clickCount');
 		if (clickCount < 1) {
-			this.img.setAttribute('clickCount', 1);
+			img.setAttribute('clickCount', 1);
 			this.quill.root.click()
 			setTimeout(() => {
-				this.img.click();
+				img.click();
 			}, 1000);
 		}
-		this.img.setAttribute('clickCount', 0);
+		img.setAttribute('clickCount', 0);
 	};
 
 	hideOverlay = () => {

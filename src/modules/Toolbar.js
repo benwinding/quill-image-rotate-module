@@ -15,6 +15,9 @@ export class Toolbar extends BaseModule {
 		// Setup Toolbar
 		this.toolbar = document.createElement("div");
 		Object.assign(this.toolbar.style, this.options.toolbarStyles);
+		if (!this.overlay) {
+			return;
+		}
 		this.overlay.appendChild(this.toolbar);
 		// Setup Buttons
 		this._defineAlignments();
