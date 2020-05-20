@@ -3,11 +3,12 @@ const path = require("path");
 module.exports = [
 	{
 		entry: {
-			"quill.htmlEditButton": "./src/ImageRotate.js"
+			"image-rotate": "./src/ImageRotate.js"
 		},
 		output: {
 			filename: "[name].min.js",
 			path: path.resolve(__dirname, "dist"),
+			libraryTarget: "umd",
 			publicPath: "/dist/"
 		},
 		devServer: {
